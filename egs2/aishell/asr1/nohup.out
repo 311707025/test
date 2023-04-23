@@ -1,0 +1,110 @@
+2023-04-07T23:36:23 (asr.sh:277:main) ./asr.sh --nj 32 --inference_nj 32 --ngpu 1 --lang zh --audio_format flac.ark --feats_type raw --token_type char --use_lm false --use_word_lm false --lm_config conf/train_lm_transformer.yaml --asr_config conf/train_asr_branchformer.yaml --inference_config conf/decode_asr_branchformer.yaml --train_set train --valid_set dev --test_sets dev test --speed_perturb_factors 0.9 1.0 1.1 --asr_speech_fold_length 512 --asr_text_fold_length 150 --lm_fold_length 150 --lm_train_text data/train/text --stage 10
+2023-04-07T23:36:23 (asr.sh:315:main) Info: The valid_set 'dev' is included in the test_sets. '--eval_valid_set true' is set and 'dev' is removed from the test_sets
+2023-04-07T23:36:23 (asr.sh:560:main) Skipped stages:  6 7 8 9 14 15 16 
+2023-04-07T23:36:23 (asr.sh:1183:main) Stage 10: ASR collect stats: train_set=dump/raw/train_sp, valid_set=dump/raw/dev
+2023-04-07T23:36:23 (asr.sh:1234:main) Generate 'exp/asr_stats_raw_zh_char_sp/run.sh'. You can resume the process from stage 10 using this script
+2023-04-07T23:36:23 (asr.sh:1238:main) ASR collect-stats started... log: 'exp/asr_stats_raw_zh_char_sp/logdir/stats.*.log'
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/aggregate_stats_dirs.py --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.1 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.2 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.3 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.4 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.5 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.6 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.7 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.8 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.9 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.10 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.11 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.12 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.13 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.14 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.15 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.16 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.17 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.18 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.19 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.20 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.21 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.22 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.23 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.24 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.25 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.26 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.27 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.28 --output_dir exp/asr_stats_raw_zh_char_sp
+2023-04-07T23:36:50 (asr.sh:1296:main) Stage 11: ASR Training: train_set=dump/raw/train_sp, valid_set=dump/raw/dev
+2023-04-07T23:36:50 (asr.sh:1388:main) Generate 'exp/asr_train_asr_branchformer_raw_zh_char_sp/run.sh'. You can resume the process from stage 11 using this script
+2023-04-07T23:36:50 (asr.sh:1392:main) ASR training started... log: 'exp/asr_train_asr_branchformer_raw_zh_char_sp/train.log'
+2023-04-07 23:36:50,584 (launch:94) INFO: /home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/launch.py --cmd 'run.pl --name exp/asr_train_asr_branchformer_raw_zh_char_sp/train.log' --log exp/asr_train_asr_branchformer_raw_zh_char_sp/train.log --ngpu 1 --num_nodes 1 --init_file_prefix exp/asr_train_asr_branchformer_raw_zh_char_sp/.dist_init_ --multiprocessing_distributed true -- python3 -m espnet2.bin.asr_train --use_preprocessor true --bpemodel none --token_type char --token_list data/zh_token_list/char/tokens.txt --non_linguistic_symbols none --cleaner none --g2p none --valid_data_path_and_name_and_type dump/raw/dev/wav.scp,speech,kaldi_ark --valid_shape_file exp/asr_stats_raw_zh_char_sp/valid/speech_shape --resume true --ignore_init_mismatch false --fold_length 51200 --output_dir exp/asr_train_asr_branchformer_raw_zh_char_sp --config conf/train_asr_branchformer.yaml --frontend_conf fs=16k --normalize=global_mvn --normalize_conf stats_file=exp/asr_stats_raw_zh_char_sp/train/feats_stats.npz --train_data_path_and_name_and_type dump/raw/train_sp/wav.scp,speech,kaldi_ark --train_shape_file exp/asr_stats_raw_zh_char_sp/train/speech_shape --fold_length 150 --train_data_path_and_name_and_type dump/raw/train_sp/text,text,text --train_shape_file exp/asr_stats_raw_zh_char_sp/train/text_shape.char --valid_data_path_and_name_and_type dump/raw/dev/text,text,text --valid_shape_file exp/asr_stats_raw_zh_char_sp/valid/text_shape.char
+2023-04-07 23:36:50,603 (launch:348) INFO: log file: exp/asr_train_asr_branchformer_raw_zh_char_sp/train.log
+Traceback (most recent call last):
+  File "/home/dl311707025/anaconda3/bin/…/envs/espnet/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/dl311707025/anaconda3/bin/…/envs/espnet/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/dl311707025/espnet/espnet2/bin/launch.py", line 384, in <module>
+    main()
+  File "/home/dl311707025/espnet/espnet2/bin/launch.py", line 358, in main
+    process.wait(0.5)
+  File "/home/dl311707025/anaconda3/bin/…/envs/espnet/lib/python3.9/subprocess.py", line 1189, in wait
+    return self._wait(timeout=timeout)
+  File "/home/dl311707025/anaconda3/bin/…/envs/espnet/lib/python3.9/subprocess.py", line 1911, in _wait
+    time.sleep(delay)
+KeyboardInterrupt
+2023-04-08T02:38:27 (asr.sh:277:main) ./asr.sh --nj 32 --inference_nj 32 --ngpu 1 --lang zh --audio_format flac.ark --feats_type raw --token_type char --use_lm false --use_word_lm false --lm_config conf/train_lm_transformer.yaml --asr_config conf/train_asr_branchformer.yaml --inference_config conf/decode_asr_branchformer.yaml --train_set train --valid_set dev --test_sets dev test --speed_perturb_factors 0.9 1.0 1.1 --asr_speech_fold_length 512 --asr_text_fold_length 150 --lm_fold_length 150 --lm_train_text data/train/text --stage 10
+2023-04-08T02:38:27 (asr.sh:315:main) Info: The valid_set 'dev' is included in the test_sets. '--eval_valid_set true' is set and 'dev' is removed from the test_sets
+2023-04-08T02:38:27 (asr.sh:560:main) Skipped stages:  6 7 8 9 14 15 16 
+2023-04-08T02:38:27 (asr.sh:1183:main) Stage 10: ASR collect stats: train_set=dump/raw/train_sp, valid_set=dump/raw/dev
+2023-04-08T02:38:27 (asr.sh:1234:main) Generate 'exp/asr_stats_raw_zh_char_sp/run.sh'. You can resume the process from stage 10 using this script
+2023-04-08T02:38:27 (asr.sh:1238:main) ASR collect-stats started... log: 'exp/asr_stats_raw_zh_char_sp/logdir/stats.*.log'
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/aggregate_stats_dirs.py --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.1 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.2 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.3 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.4 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.5 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.6 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.7 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.8 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.9 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.10 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.11 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.12 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.13 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.14 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.15 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.16 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.17 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.18 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.19 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.20 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.21 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.22 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.23 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.24 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.25 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.26 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.27 --input_dir exp/asr_stats_raw_zh_char_sp/logdir/stats.28 --output_dir exp/asr_stats_raw_zh_char_sp
+2023-04-08T02:38:54 (asr.sh:1296:main) Stage 11: ASR Training: train_set=dump/raw/train_sp, valid_set=dump/raw/dev
+2023-04-08T02:38:54 (asr.sh:1388:main) Generate 'exp/asr_train_asr_branchformer_raw_zh_char_sp/run.sh'. You can resume the process from stage 11 using this script
+2023-04-08T02:38:54 (asr.sh:1392:main) ASR training started... log: 'exp/asr_train_asr_branchformer_raw_zh_char_sp/train.log'
+2023-04-08 02:38:54,927 (launch:94) INFO: /home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/launch.py --cmd 'run.pl --name exp/asr_train_asr_branchformer_raw_zh_char_sp/train.log' --log exp/asr_train_asr_branchformer_raw_zh_char_sp/train.log --ngpu 1 --num_nodes 1 --init_file_prefix exp/asr_train_asr_branchformer_raw_zh_char_sp/.dist_init_ --multiprocessing_distributed true -- python3 -m espnet2.bin.asr_train --use_preprocessor true --bpemodel none --token_type char --token_list data/zh_token_list/char/tokens.txt --non_linguistic_symbols none --cleaner none --g2p none --valid_data_path_and_name_and_type dump/raw/dev/wav.scp,speech,kaldi_ark --valid_shape_file exp/asr_stats_raw_zh_char_sp/valid/speech_shape --resume true --ignore_init_mismatch false --fold_length 51200 --output_dir exp/asr_train_asr_branchformer_raw_zh_char_sp --config conf/train_asr_branchformer.yaml --frontend_conf fs=16k --normalize=global_mvn --normalize_conf stats_file=exp/asr_stats_raw_zh_char_sp/train/feats_stats.npz --train_data_path_and_name_and_type dump/raw/train_sp/wav.scp,speech,kaldi_ark --train_shape_file exp/asr_stats_raw_zh_char_sp/train/speech_shape --fold_length 150 --train_data_path_and_name_and_type dump/raw/train_sp/text,text,text --train_shape_file exp/asr_stats_raw_zh_char_sp/train/text_shape.char --valid_data_path_and_name_and_type dump/raw/dev/text,text,text --valid_shape_file exp/asr_stats_raw_zh_char_sp/valid/text_shape.char
+2023-04-08 02:38:54,949 (launch:348) INFO: log file: exp/asr_train_asr_branchformer_raw_zh_char_sp/train.log
+2023-04-08T05:33:31 (asr.sh:1461:main) Stage 12: Decoding: training_dir=exp/asr_train_asr_branchformer_raw_zh_char_sp
+2023-04-08T05:33:31 (asr.sh:1489:main) Generate 'exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/run.sh'. You can resume the process from stage 12 using this script
+2023-04-08T05:33:31 (asr.sh:1554:main) Decoding started... log: 'exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/org/dev/logdir/asr_inference.*.log'
+2023-04-08T05:34:59 (asr.sh:1570:main) Calculating RTF & latency... log: 'exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/org/dev/logdir/calculate_rtf.log'
+2023-04-08T05:35:00 (asr.sh:1554:main) Decoding started... log: 'exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/test/logdir/asr_inference.*.log'
+2023-04-08T05:40:45 (asr.sh:1570:main) Calculating RTF & latency... log: 'exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/test/logdir/calculate_rtf.log'
+2023-04-08T05:40:46 (asr.sh:1602:main) Stage 13: Scoring
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/tokenize_text.py -f 2- --input - --output - --cleaner none --token_type char --non_linguistic_symbols none --remove_non_linguistic_symbols true
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/tokenize_text.py -f 2- --input - --output - --token_type char --non_linguistic_symbols none --remove_non_linguistic_symbols true --cleaner none
+2023-04-08T05:40:48 (asr.sh:1688:main) Write cer result in exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/org/dev/score_cer/result.txt
+|    SPKR      |    # Snt        # Wrd    |    Corr          Sub          Del          Ins          Err        S.Err    |
+|    Sum/Avg   |      30          2579    |    87.7          0.1         12.2          0.2         12.4          6.7    |
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/tokenize_text.py -f 2- --input - --output - --cleaner none --token_type word --non_linguistic_symbols none --remove_non_linguistic_symbols true
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/tokenize_text.py -f 2- --input - --output - --token_type word --non_linguistic_symbols none --remove_non_linguistic_symbols true --cleaner none
+2023-04-08T05:40:49 (asr.sh:1688:main) Write wer result in exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/org/dev/score_wer/result.txt
+|    SPKR      |    # Snt       # Wrd    |    Corr          Sub           Del          Ins          Err        S.Err    |
+|    Sum/Avg   |      30          657    |    87.1          0.9          12.0          0.0         12.9          6.7    |
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/tokenize_text.py -f 2- --input - --output - --cleaner none --token_type char --non_linguistic_symbols none --remove_non_linguistic_symbols true
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/tokenize_text.py -f 2- --input - --output - --token_type char --non_linguistic_symbols none --remove_non_linguistic_symbols true --cleaner none
+2023-04-08T05:40:51 (asr.sh:1688:main) Write cer result in exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/test/score_cer/result.txt
+|    SPKR      |   # Snt        # Wrd     |   Corr          Sub         Del          Ins         Err        S.Err    |
+|    Sum/Avg   |    346         22222     |   36.2         18.7        45.1         41.5       105.4        100.0    |
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/tokenize_text.py -f 2- --input - --output - --cleaner none --token_type word --non_linguistic_symbols none --remove_non_linguistic_symbols true
+/home/dl311707025/anaconda3/bin/…/envs/espnet/bin/python3 /home/dl311707025/espnet/espnet2/bin/tokenize_text.py -f 2- --input - --output - --token_type word --non_linguistic_symbols none --remove_non_linguistic_symbols true --cleaner none
+2023-04-08T05:40:53 (asr.sh:1688:main) Write wer result in exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/test/score_wer/result.txt
+|    SPKR      |   # Snt        # Wrd    |    Corr         Sub          Del          Ins         Err        S.Err    |
+|    Sum/Avg   |    346          5545    |     4.5        54.8         40.7         37.3       132.8        100.0    |
+<!-- Generated by scripts/utils/show_asr_result.sh -->
+# RESULTS
+## Environments
+- date: `Sat Apr  8 05:40:54 CST 2023`
+- python version: `3.9.16 (main, Mar  8 2023, 14:00:05)  [GCC 11.2.0]`
+- espnet version: `espnet 202301`
+- pytorch version: `pytorch 1.13.1`
+- Git hash: `78db412a34efb28f6a48688666236ded736a3c6f`
+  - Commit date: `Sat Apr 1 19:27:08 2023 +0000`
+
+## exp/asr_train_asr_branchformer_raw_zh_char_sp
+### WER
+
+|dataset|Snt|Wrd|Corr|Sub|Del|Ins|Err|S.Err|
+|---|---|---|---|---|---|---|---|---|
+|decode_asr_branchformer_asr_model_valid.acc.ave/test|346|5545|4.5|54.8|40.7|37.3|132.8|100.0|
+
+### CER
+
+|dataset|Snt|Wrd|Corr|Sub|Del|Ins|Err|S.Err|
+|---|---|---|---|---|---|---|---|---|
+|decode_asr_branchformer_asr_model_valid.acc.ave/test|346|22222|36.2|18.7|45.1|41.5|105.4|100.0|
+
+### TER
+
+|dataset|Snt|Wrd|Corr|Sub|Del|Ins|Err|S.Err|
+|---|---|---|---|---|---|---|---|---|
+## exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave
+### WER
+
+|dataset|Snt|Wrd|Corr|Sub|Del|Ins|Err|S.Err|
+|---|---|---|---|---|---|---|---|---|
+|org/dev|30|657|87.1|0.9|12.0|0.0|12.9|6.7|
+
+### CER
+
+|dataset|Snt|Wrd|Corr|Sub|Del|Ins|Err|S.Err|
+|---|---|---|---|---|---|---|---|---|
+|org/dev|30|2579|87.7|0.1|12.2|0.2|12.4|6.7|
+
+### TER
+
+|dataset|Snt|Wrd|Corr|Sub|Del|Ins|Err|S.Err|
+|---|---|---|---|---|---|---|---|---|
+2023-04-08T05:40:56 (asr.sh:1839:main) Successfully finished. [elapsed=10949s]

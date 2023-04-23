@@ -1,1 +1,5 @@
-tuning/decode_rnn_char.yaml
+beam-size: 10
+penalty: 0.2
+maxlenratio: 1.6
+minlenratio: 0.0
+lm-weight: 0.0

@@ -49,12 +49,13 @@ class DistributedOption:
                 self.dist_world_size, self.dist_launcher
             )
             self.local_rank = get_local_rank(self.local_rank, self.dist_launcher)
-
+            # self.local_rank = 0
             if self.local_rank is not None:
                 if self.ngpu > 1:
                     raise RuntimeError(f"Assuming 1GPU in this case: ngpu={self.ngpu}")
                 if "CUDA_VISIBLE_DEVICES" in os.environ:
                     cvd = os.environ["CUDA_VISIBLE_DEVICES"]
+                    print(cvd)
                     if self.local_rank >= len(cvd.split(",")):
                         raise RuntimeError(
                             f"LOCAL_RANK={self.local_rank} is bigger "

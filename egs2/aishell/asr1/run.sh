@@ -23,7 +23,7 @@ speed_perturb_factors="0.9 1.0 1.1"
 ./asr.sh \
     --nj 32 \
     --inference_nj 32 \
-    --ngpu 4 \
+    --ngpu 1 \
     --lang zh \
     --audio_format "flac.ark" \
     --feats_type raw \

@@ -7,3 +7,4 @@ if [ ! -d $MAIN_ROOT/tools/kenlm/build/bin ] > /dev/null; then
     echo "Error: cd ${MAIN_ROOT}/tools && make kenlm.done" >&2
     return 1
 fi
+# export NCCL_SOCKET_IFNAME="^lo,docker,virbr,vmnet,vboxnet" 

@@ -1,1 +1,6 @@
-tuning/decode_pytorch_transformer.yaml
+batchsize: 0
+beam-size: 10
+penalty: 0.3
+maxlenratio: 0.3
+minlenratio: 0.0
+lm-weight: 0.0

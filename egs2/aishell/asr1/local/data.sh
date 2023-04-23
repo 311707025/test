@@ -20,7 +20,7 @@ EOF
 SECONDS=0
 
 # Data preparation related
-data_url=www.openslr.org/resources/33
+data_url=
 remove_archive=false
 download_opt=
 
@@ -49,17 +49,17 @@ if [ -z "${AISHELL}" ]; then
 fi
 
 
-log "Download data to ${AISHELL}"
-if [ ! -d "${AISHELL}" ]; then
-    mkdir -p "${AISHELL}"
-fi
+# log "Download data to ${AISHELL}"
+# if [ ! -d "${AISHELL}" ]; then
+#     mkdir -p "${AISHELL}"
+# fi
 # To absolute path
 AISHELL=$(cd ${AISHELL}; pwd)
 
-echo local/download_and_untar.sh ${download_opt} "${AISHELL}" "${data_url}" data_aishell
-local/download_and_untar.sh ${download_opt} "${AISHELL}" "${data_url}" data_aishell
-echo local/download_and_untar.sh ${download_opt} "${AISHELL}" "${data_url}" resource_aishell
-local/download_and_untar.sh ${download_opt} "${AISHELL}" "${data_url}" resource_aishell
+# echo local/download_and_untar.sh ${download_opt} "${AISHELL}" "${data_url}" data_aishell
+# local/download_and_untar.sh ${download_opt} "${AISHELL}" "${data_url}" data_aishell
+# echo local/download_and_untar.sh ${download_opt} "${AISHELL}" "${data_url}" resource_aishell
+# local/download_and_untar.sh ${download_opt} "${AISHELL}" "${data_url}" resource_aishell
 
 aishell_audio_dir=${AISHELL}/data_aishell/wav
 aishell_text=${AISHELL}/data_aishell/transcript/aishell_transcript_v0.8.txt
@@ -112,8 +112,9 @@ done
 # remove space in text
 for x in train dev test; do
   cp data/${x}/text data/${x}/text.org
-  paste -d " " <(cut -f 1 -d" " data/${x}/text.org) <(cut -f 2- -d" " data/${x}/text.org | tr -d " ") \
-      > data/${x}/text
+#   paste -d " " <(cut -f 1 -d" " data/${x}/text.org) <(cut -f 2- -d" " data/${x}/text.org | tr -d " ") \
+      # > data/${x}/text
+  paste  data/${x}/text    
   rm data/${x}/text.org
 done
 
