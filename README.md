@@ -114,4 +114,3 @@ Kaggle 競賽網址: [https://www.kaggle.com/competitions/espnet-taiwanese-asr1/
       - 此為預測結果的檔案，將內容格式改為如同從 kaggle 下載下來的`sample.csv`後，即可上傳 kaggle 競賽
    2. 路徑：`/home/username/espnet/egs2/aishell/asr1/exp/asr_train_asr_branchformer_raw_zh_char_sp/decode_asr_branchformer_asr_model_valid.acc.ave/org/dev/score_wer/result.txt`
       - 查看績效
-# 123
